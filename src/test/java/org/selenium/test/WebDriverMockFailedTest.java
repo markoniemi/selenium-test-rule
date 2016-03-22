@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 public class WebDriverMockFailedTest {
     @SeleniumWebDriver
-    WebDriver webDriver = new WebDriverMock();
+    public WebDriver webDriver = new WebDriverMock();
     @Rule
     public SeleniumTestRule seleniumTestRule = new SeleniumTestRule();
 
