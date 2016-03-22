@@ -61,7 +61,7 @@ public class SeleniumTestRuleTest {
     public void phantomJsTestWithAutomaticDriverCreate() {
         Result result = runTest(PhantomJsTestWithAutomaticDriverCreate.class);
         Assert.assertFalse(result.wasSuccessful());
-//        Assert.assertTrue(result.getFailures().get(0).getException() instanceof NoSuchElementException);
+        Assert.assertTrue(result.getFailures().get(0).getException() instanceof NoSuchElementException);
     }
     
     @Test

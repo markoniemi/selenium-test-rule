@@ -42,6 +42,7 @@ public class SeleniumTestRule implements MethodRule {
     private Object testCase;
     private boolean createSubdirectoryForTestCase;
     private Annotation webDriverAnnotation;
+    private Field webDriverField;
 
     public SeleniumTestRule() {
         this("target/failsafe-reports/", true);
@@ -83,8 +84,9 @@ public class SeleniumTestRule implements MethodRule {
 
     /**
      * Invoked when a test method is about to start
+     * @throws IllegalAccessException 
      */
-    public void starting(Description description) {
+    public void starting(Description description) throws IllegalAccessException {
         log.debug("starting {}", description.getDisplayName());
         getWebDriver(testCase);
         if (this.webDriverAnnotation instanceof PhantomJsDriver) {
@@ -98,6 +100,7 @@ public class SeleniumTestRule implements MethodRule {
             capabilities.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, phantomJsPath);
             this.webDriver = new PhantomJSDriver(capabilities);
             this.webDriver.manage().window().setSize(new Dimension(800, 600));
+            setWebDriver(testCase);
         }
     }
 
@@ -177,6 +180,7 @@ public class SeleniumTestRule implements MethodRule {
         for (Class annotation : annotations) {
             for (Field field : FieldUtils.getFieldsWithAnnotation(testCase.getClass(), annotation)) {
                 this.webDriver = (WebDriver) getFieldValue(testCase, field);
+                this.webDriverField = field;
                 this.webDriverAnnotation = field.getAnnotation(annotation);
             }
         }
@@ -201,6 +205,10 @@ public class SeleniumTestRule implements MethodRule {
             throw new IllegalArgumentException(createErrorText(), e);
         }
         return null;
+    }
+
+    private void setWebDriver(Object testCase) throws IllegalAccessException {
+        FieldUtils.writeField(webDriverField, testCase, webDriver);
     }
 
     private String createErrorText() {
