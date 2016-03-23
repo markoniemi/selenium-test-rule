@@ -4,9 +4,10 @@
 	<groupId>org.selenium</groupId>
 	<artifactId>selenium-test-rule</artifactId>
 	<version>0.2-SNAPSHOT</version>
-	<properties> 
+	<properties>
 		<selenium.version>2.42.2</selenium.version>
 		<junit.version>4.12</junit.version>
+		<phantomjs.version>1.9.7</phantomjs.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -48,15 +49,15 @@
 			<groupId>com.github.detro</groupId>
 			<artifactId>phantomjsdriver</artifactId>
 			<version>1.2.0</version>
-<!-- 			<scope>test</scope> -->
+			<!-- <scope>test</scope> -->
 		</dependency>
 		<!-- test -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>junit</groupId> -->
-<!-- 			<artifactId>junit</artifactId> -->
-<!-- 			<version>${junit.version}</version> -->
-<!-- 			<scope>test</scope> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>junit</groupId> -->
+		<!-- <artifactId>junit</artifactId> -->
+		<!-- <version>${junit.version}</version> -->
+		<!-- <scope>test</scope> -->
+		<!-- </dependency> -->
 		<!-- <dependency> -->
 		<!-- <groupId>org.seleniumhq.selenium</groupId> -->
 		<!-- <artifactId>selenium-firefox-driver</artifactId> -->
@@ -84,6 +85,46 @@
 					</includes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>com.github.klieber</groupId>
+				<artifactId>phantomjs-maven-plugin</artifactId>
+				<version>0.5</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>install</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<outputDirectory>${appsDir}</outputDirectory>
+					<version>${phantomjs.version}</version>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>unix</id>
+			<activation>
+				<os>
+					<family>unix</family>
+				</os>
+			</activation>
+			<properties>
+				<appsDir>/var/tmp</appsDir>
+			</properties>
+		</profile>
+		<profile>
+			<id>windows</id>
+			<activation>
+				<os>
+					<family>windows</family>
+				</os>
+			</activation>
+			<properties>
+				<appsDir>c:\apps</appsDir>
+			</properties>
+		</profile>
+	</profiles>
 </project>

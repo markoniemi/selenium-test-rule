@@ -84,17 +84,20 @@ public class SeleniumTestRule implements MethodRule {
 
     /**
      * Invoked when a test method is about to start
-     * @throws IllegalAccessException 
+     * 
+     * @throws IllegalAccessException
      */
     public void starting(Description description) throws IllegalAccessException {
         log.debug("starting {}", description.getDisplayName());
         getWebDriver(testCase);
         if (this.webDriverAnnotation instanceof PhantomJsDriver) {
-            String phantomJsPath = ((PhantomJsDriver)this.webDriverAnnotation).phantomJsPath();
+            String phantomJsPath = ((PhantomJsDriver) this.webDriverAnnotation).phantomJsPath();
             if (StringUtils.isEmpty(phantomJsPath)) {
                 // TODO do not use default
-                phantomJsPath = System.getProperty(PHANTOMJS_BINARY,
-                        "c:/apps/phantomjs-2.0.0-windows/bin/phantomjs.exe");
+                phantomJsPath = System.getProperty(PHANTOMJS_BINARY);
+            }
+            if (StringUtils.isEmpty(phantomJsPath)) {
+                throw new IllegalArgumentException("PhantomJsDriver requires either path to PhantomJs binary or system property " + PHANTOMJS_BINARY);
             }
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, phantomJsPath);
