@@ -97,6 +97,7 @@ public class SeleniumTestRule implements MethodRule {
                 phantomJsPath = System.getProperty(PHANTOMJS_BINARY);
             }
             if (StringUtils.isEmpty(phantomJsPath)) {
+                log.error("PhantomJsDriver requires either path to PhantomJs binary or system property " + PHANTOMJS_BINARY);
                 throw new IllegalArgumentException("PhantomJsDriver requires either path to PhantomJs binary or system property " + PHANTOMJS_BINARY);
             }
             DesiredCapabilities capabilities = new DesiredCapabilities();

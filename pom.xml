@@ -83,12 +83,15 @@
 					<includes>
 						<include>**/*TestSuite.java</include>
 					</includes>
+					<systemPropertyVariables>
+						<phantomjs.binary>${phantomjs.binary}</phantomjs.binary>
+					</systemPropertyVariables>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>com.github.klieber</groupId>
 				<artifactId>phantomjs-maven-plugin</artifactId>
-				<version>0.5</version>
+				<version>0.7</version>
 				<executions>
 					<execution>
 						<goals>
