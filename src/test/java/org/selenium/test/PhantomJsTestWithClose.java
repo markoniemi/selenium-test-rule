@@ -25,8 +25,7 @@ public class PhantomJsTestWithClose {
 
     @Before
     public void setUp() {
-        String phantomJsPath = System.getProperty(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
-                "c:/apps/phantomjs-2.0.0-windows/bin/phantomjs.exe");
+        String phantomJsPath = System.getProperty("phantomjs.binary");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, phantomJsPath);
         webDriver = new PhantomJSDriver(capabilities);
