@@ -2,7 +2,6 @@ package org.selenium;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -20,13 +19,11 @@ import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.ScreenshotException;
 
+import com.machinepublishers.jbrowserdriver.Settings;
 import com.thoughtworks.selenium.SeleniumException;
 
 import lombok.Setter;
@@ -92,6 +89,8 @@ public class SeleniumTestRule implements MethodRule {
         getWebDriver(testCase);
         if (this.webDriverAnnotation instanceof PhantomJsDriver) {
             createPhantomJsDriver();
+    		} else if (this.webDriverAnnotation instanceof SeleniumJBrowserDriver) {
+			createJBrowserDriver();
         }
     }
 
@@ -118,6 +117,10 @@ public class SeleniumTestRule implements MethodRule {
 		    throw new IllegalArgumentException("PhantomJsDriver requires either path to PhantomJs binary or system property " + PHANTOMJS_BINARY);
 		}
 		return phantomJsPath;
+	}
+	private void createJBrowserDriver() throws IllegalAccessException {
+		this.webDriver = new com.machinepublishers.jbrowserdriver.JBrowserDriver();
+		setWebDriver(testCase);
 	}
 
     /**
@@ -192,7 +195,7 @@ public class SeleniumTestRule implements MethodRule {
     }
 
     protected void getWebDriverFromAnnotation(Object testCase) {
-        Class[] annotations = { SeleniumWebDriver.class, PhantomJsDriver.class };
+        Class[] annotations = { SeleniumWebDriver.class, PhantomJsDriver.class, SeleniumJBrowserDriver.class };
         for (Class annotation : annotations) {
             for (Field field : FieldUtils.getFieldsWithAnnotation(testCase.getClass(), annotation)) {
                 this.webDriver = (WebDriver) getFieldValue(testCase, field);

@@ -6,9 +6,11 @@ import org.junit.Test;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Request;
 import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.WebDriver;
+import org.selenium.test.JBrowserDriverTest;
 import org.selenium.test.PhantomJsTest;
 import org.selenium.test.PhantomJsTestWithAutomaticDriverCreate;
 import org.selenium.test.PhantomJsTestWithClose;
@@ -46,36 +48,47 @@ public class SeleniumTestRuleTest {
         Assert.assertTrue(result.wasSuccessful());
     }
 
-    @Test
-    public void failed() {
+    @Test(expected=AssertionError.class)
+    public void failed() throws Throwable {
         Result result = runTest(WebDriverMockFailedTest.class);
         Assert.assertFalse(result.wasSuccessful());
+        throw result.getFailures().get(0).getException();
     }
 
-    @Test
-    public void phantomJsTest() {
+    @Test(expected=NoSuchElementException.class)
+    public void phantomJsTest() throws Throwable {
         Result result = runTest(PhantomJsTest.class);
         Assert.assertFalse(result.wasSuccessful());
-        Assert.assertTrue(result.getFailures().get(0).getException() instanceof NoSuchElementException);
+        throw result.getFailures().get(0).getException();
+//        Throwable exception = result.getFailures().get(0).getException();
+//		Assert.assertTrue(exception.toString(), exception instanceof NoSuchElementException);
     }
 
-    @Test
-    public void phantomJsTestWithAutomaticDriverCreate() {
+    @Test(expected=NoSuchElementException.class)
+    public void phantomJsTestWithAutomaticDriverCreate() throws Throwable {
     	// set system property phantomjs.binary before running this test
         Result result = runTest(PhantomJsTestWithAutomaticDriverCreate.class);
         Assert.assertFalse(result.wasSuccessful());
-        log.debug(result.getFailures().get(0).getMessage());
-        Assert.assertTrue(result.getFailures().get(0).getException() instanceof NoSuchElementException);
+        throw result.getFailures().get(0).getException();
     }
     
-    @Test
-    public void phantomJsTestWithClose() {
+    @Test(expected=NoSuchWindowException.class)
+    public void phantomJsTestWithClose() throws Throwable {
         Result result = runTest(PhantomJsTestWithClose.class);
-        Assert.assertTrue(result.getFailures().get(0).getException() instanceof NoSuchWindowException);
+        throw result.getFailures().get(0).getException();
     }
 
+	@Test(expected=NullPointerException.class)
+	public void jBrowserDriverTest() throws Throwable {
+		Result result = runTest(JBrowserDriverTest.class);
+		throw result.getFailures().get(0).getException();
+	}
     private static Result runTest(Class<?> test) {
         JUnitCore junitCore = new JUnitCore();
-        return junitCore.run(Request.aClass(test).getRunner());
+        Result result = junitCore.run(Request.aClass(test).getRunner());
+        for (Failure failure : result.getFailures()) {
+			log.debug(failure.getMessage());
+		}
+        return result;
     }
 }
