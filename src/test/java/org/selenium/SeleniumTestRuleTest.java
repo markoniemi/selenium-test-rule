@@ -15,6 +15,8 @@ import org.selenium.test.PhantomJsTestWithClose;
 import org.selenium.test.WebDriverMockFailedTest;
 import org.selenium.test.WebDriverMockSuccessfulTest;
 
+import lombok.extern.log4j.Log4j2;
+@Log4j2
 public class SeleniumTestRuleTest {
     @Test
     public void getWebDriver() {
@@ -59,8 +61,10 @@ public class SeleniumTestRuleTest {
 
     @Test
     public void phantomJsTestWithAutomaticDriverCreate() {
+    	// set system property phantomjs.binary before running this test
         Result result = runTest(PhantomJsTestWithAutomaticDriverCreate.class);
         Assert.assertFalse(result.wasSuccessful());
+        log.debug(result.getFailures().get(0).getMessage());
         Assert.assertTrue(result.getFailures().get(0).getException() instanceof NoSuchElementException);
     }
     
