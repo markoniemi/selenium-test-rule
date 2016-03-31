@@ -19,8 +19,8 @@ public class FirefoxDriverTest {
 
 	@Test
 	public void firefoxDriverTest() {
-		webDriver.get("https://www.google.fi");
-		Assert.assertEquals("Google", webDriver.getTitle());
+        webDriver.get("file://localhost/" + System.getProperty("user.dir") + "/src/test/resources/test.html");
+        Assert.assertEquals("Test", webDriver.getTitle());
 		// jBrowserDriver does not throw NoSuchElementException when element is
 		webDriver.findElement(By.id("nonexistent")).click();
 	}

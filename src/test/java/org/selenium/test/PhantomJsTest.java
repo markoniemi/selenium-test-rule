@@ -14,7 +14,9 @@ import org.selenium.SeleniumTestRule;
 import org.selenium.SeleniumWebDriver;
 
 import lombok.Data;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Data
 public class PhantomJsTest {
     @SeleniumWebDriver
@@ -32,9 +34,9 @@ public class PhantomJsTest {
     }
 
     @Test
-    public void phantomJsTest() {
-        webDriver.get("https://www.google.fi");
-        Assert.assertEquals("Google", webDriver.getTitle());
+    public void phantomJsTest() throws InterruptedException {
+        webDriver.get("file://localhost/" + System.getProperty("user.dir") + "/src/test/resources/test.html");
+        Assert.assertEquals("Test", webDriver.getTitle());
         webDriver.findElement(By.id("nonexistent"));
     }
 }
