@@ -35,16 +35,17 @@ import lombok.extern.log4j.Log4j2;
 public class SeleniumTestRule implements MethodRule {
 	/** system property which is compatible with phantomjs-maven-plugin */
 	public static final String PHANTOMJS_BINARY = "phantomjs.binary";
+	public static final String DEFAULT_SCREENSHOT_DIRECTORY = "target/surefire-reports/";
 	@Setter
 	private WebDriver webDriver;
-	private String screenshotDirectory = "target/failsafe-reports/";
+	private String screenshotDirectory;
 	private Object testCase;
 	private boolean createSubdirectoryForTestCase;
 	private Annotation webDriverAnnotation;
 	private Field webDriverField;
 
 	public SeleniumTestRule() {
-		this("target/failsafe-reports/", true);
+		this(DEFAULT_SCREENSHOT_DIRECTORY, true);
 	}
 
 	public SeleniumTestRule(String screenshotDirectory, boolean createSubdirectoryForTestCase) {
