@@ -37,7 +37,7 @@ public class SeleniumTestRule implements MethodRule {
 	public static final String PHANTOMJS_BINARY = "phantomjs.binary";
 	@Setter
 	private WebDriver webDriver;
-	private String screenshotDirectory = "target/failsafe-reports/";
+	private String screenshotDirectory = "target/surefire-reports/";
 	private Object testCase;
 	private boolean createSubdirectoryForTestCase;
 	private Annotation webDriverAnnotation;
