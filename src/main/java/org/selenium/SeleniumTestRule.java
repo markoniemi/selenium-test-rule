@@ -25,7 +25,6 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import com.machinepublishers.jbrowserdriver.Settings;
 import com.thoughtworks.selenium.SeleniumException;
 
 import lombok.Setter;
