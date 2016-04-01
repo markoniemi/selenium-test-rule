@@ -1,6 +1,7 @@
 package org.selenium.test;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -11,6 +12,7 @@ import org.selenium.SeleniumTestRule;
 import lombok.Data;
 
 @Data
+@Ignore
 public class ChromeDriverTest {
 	@SeleniumChromeDriver
 	public WebDriver webDriver;
