@@ -83,6 +83,7 @@ public class SeleniumTestRuleTest {
 	}
 
 	@Test(expected = NullPointerException.class)
+	@Ignore
 	public void jBrowserDriverTest() throws Throwable {
 		Result result = runTest(JBrowserDriverTest.class);
 		throw result.getFailures().get(0).getException();
