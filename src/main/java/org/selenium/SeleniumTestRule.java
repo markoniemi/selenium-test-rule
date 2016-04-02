@@ -44,7 +44,7 @@ public class SeleniumTestRule implements MethodRule {
 	private Field webDriverField;
 
 	public SeleniumTestRule() {
-		this(DEFAULT_SCREENSHOT_DIRECTORY, true);
+		this(DEFAULT_SCREENSHOT_DIRECTORY, false);
 	}
 
 	public SeleniumTestRule(String screenshotDirectory, boolean createSubdirectoryForTestCase) {
