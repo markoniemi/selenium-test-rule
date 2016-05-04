@@ -5,11 +5,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.selenium.PhantomJsDriver;
 import org.selenium.SeleniumTestRule;
+import org.selenium.WebDriverBinary;
+import org.selenium.annotation.PhantomJsDriver;
 
 public class PhantomJsTestWithBinaryPathProperty {
-	@PhantomJsDriver(phantomJsPathProperty = SeleniumTestRule.PHANTOMJS_BINARY)
+	@PhantomJsDriver(phantomJsPathProperty = WebDriverBinary.PHANTOMJS_BINARY)
 	public WebDriver webDriver;
 	@Rule
 	public SeleniumTestRule seleniumTestRule = new SeleniumTestRule();

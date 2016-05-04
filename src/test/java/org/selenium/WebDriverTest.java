@@ -1,7 +1,7 @@
 package org.selenium;
 
 import org.openqa.selenium.WebDriver;
-import org.selenium.SeleniumWebDriver;
+import org.selenium.annotation.SeleniumWebDriver;
 
 public class WebDriverTest {
     @SeleniumWebDriver

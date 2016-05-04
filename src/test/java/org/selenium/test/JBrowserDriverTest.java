@@ -6,8 +6,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.selenium.SeleniumJBrowserDriver;
 import org.selenium.SeleniumTestRule;
+import org.selenium.annotation.SeleniumJBrowserDriver;
 
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;

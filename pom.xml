@@ -74,20 +74,7 @@
 			<groupId>com.github.detro</groupId>
 			<artifactId>phantomjsdriver</artifactId>
 			<version>1.2.0</version>
-			<!-- <scope>test</scope> -->
 		</dependency>
-		<!-- test -->
-		<!-- <dependency> -->
-		<!-- <groupId>junit</groupId> -->
-		<!-- <artifactId>junit</artifactId> -->
-		<!-- <version>${junit.version}</version> -->
-		<!-- <scope>test</scope> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.seleniumhq.selenium</groupId> -->
-		<!-- <artifactId>selenium-firefox-driver</artifactId> -->
-		<!-- <scope>test</scope> -->
-		<!-- </dependency> -->
 	</dependencies>
 	<build>
 		<plugins>
@@ -105,38 +92,12 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.12</version>
 				<configuration>
-<!-- 					<includes> -->
-<!-- 						<include>**/*TestSuite.java</include> -->
-<!-- 					</includes> -->
+					<includes>
+						<include>**/SeleniumTestRuleTest.java</include>
+					</includes>
 					<systemPropertyVariables>
 						<phantomjs.binary>${phantomjs.binary}</phantomjs.binary>
 					</systemPropertyVariables>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>com.github.webdriverextensions</groupId>
-				<artifactId>webdriverextensions-maven-plugin</artifactId>
-				<version>2.0.0</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>install-drivers</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<!-- skip the installation for the time being -->
-					<skip>true</skip>
-					<drivers>
-						<driver>
-							<name>chromedriver</name>
-						</driver>
-<!-- 						<driver> -->
-<!-- 							<name>phanthomjs</name> -->
-<!-- 							<version>1.9.7</version> -->
-<!-- 							<url>https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-windows.zip</url> -->
-<!-- 						</driver> -->
-					</drivers>
 				</configuration>
 			</plugin>
 			<plugin>

@@ -11,7 +11,7 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.selenium.SeleniumTestRule;
-import org.selenium.SeleniumWebDriver;
+import org.selenium.annotation.SeleniumWebDriver;
 
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;

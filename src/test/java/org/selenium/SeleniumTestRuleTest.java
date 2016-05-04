@@ -1,10 +1,11 @@
 package org.selenium;
 
+import java.lang.annotation.Annotation;
+
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.JUnitCore;
-import org.junit.runner.Request;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 import org.openqa.selenium.NoSuchElementException;
@@ -28,7 +29,7 @@ public class SeleniumTestRuleTest {
 		WebDriverTest webDriverTest = new WebDriverTest();
 		webDriverTest.webDriver = new WebDriverMock();
 		SeleniumTestRule seleniumTestRule = new SeleniumTestRule();
-		WebDriver webDriver = seleniumTestRule.getWebDriver(webDriverTest);
+		WebDriver webDriver = seleniumTestRule.setWebDriverToTest(webDriverTest);
 		Assert.assertNotNull(webDriver);
 	}
 
@@ -38,13 +39,13 @@ public class SeleniumTestRuleTest {
 		try {
 			WebDriverTest webDriverTest = new WebDriverTest();
 			SeleniumTestRule seleniumTestRule = new SeleniumTestRule();
-			WebDriver webDriver = seleniumTestRule.getWebDriver(webDriverTest);
+			WebDriver webDriver = seleniumTestRule.setWebDriverToTest(webDriverTest);
 			Assert.fail();
 		} catch (IllegalArgumentException e) {
 
 		}
 	}
-
+	
 	@Test
 	public void succeeded() {
 		Result result = runTest(WebDriverMockSuccessfulTest.class);
@@ -102,9 +103,8 @@ public class SeleniumTestRuleTest {
 		throw result.getFailures().get(0).getException();
 	}
 
-	private static Result runTest(Class<?> test) {
-		JUnitCore junitCore = new JUnitCore();
-		Result result = junitCore.run(Request.aClass(test).getRunner());
+	private Result runTest(Class<?> test) {
+		Result result = JUnitCore.runClasses(test);
 		for (Failure failure : result.getFailures()) {
 			log.debug(failure.getMessage());
 		}
