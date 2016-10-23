@@ -12,8 +12,6 @@ import org.junit.runners.model.Statement;
 import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.WebDriver;
 
-import com.thoughtworks.selenium.SeleniumException;
-
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2

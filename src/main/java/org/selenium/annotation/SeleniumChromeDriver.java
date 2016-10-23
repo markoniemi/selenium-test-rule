@@ -8,9 +8,9 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface SeleniumChromeDriver {
-	public static final String BINARY_PATH_PROPERTY = "webdriver.chrome.driver";
+    public static final String BINARY_PATH_PROPERTY = "webdriver.chrome.driver";
 
-	public String binaryPathProperty() default "";
+    public String binaryPathProperty() default "";
 
-	public String binaryPath() default "";
+    public String binaryPath() default "";
 }
