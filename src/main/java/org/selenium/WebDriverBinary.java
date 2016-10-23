@@ -2,7 +2,6 @@ package org.selenium;
 
 import java.lang.annotation.Annotation;
 
-import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,6 +19,10 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 public class WebDriverBinary {
+    public WebDriverBinary() {
+        // Util class has a private constructor
+    }
+    
     public static WebDriver createDriver(Annotation webDriverAnnotation) throws IllegalAccessException {
         WebDriver webDriver = null;
         if (webDriverAnnotation instanceof PhantomJsDriver) {
@@ -43,13 +46,11 @@ public class WebDriverBinary {
     }
 
     private static WebDriver createJBrowserDriver() throws IllegalAccessException {
-        WebDriver webDriver = new com.machinepublishers.jbrowserdriver.JBrowserDriver();
-        return webDriver;
+        return new com.machinepublishers.jbrowserdriver.JBrowserDriver();
     }
 
     private static WebDriver createFirefoxDriver() throws IllegalAccessException {
-        WebDriver webDriver = new FirefoxDriver();
-        return webDriver;
+        return new FirefoxDriver();
     }
 
     private static WebDriver createChromeDriver(SeleniumChromeDriver webDriverAnnotation)

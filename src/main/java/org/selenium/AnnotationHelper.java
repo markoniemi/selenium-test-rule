@@ -12,14 +12,16 @@ import org.selenium.annotation.SeleniumJBrowserDriver;
 import org.selenium.annotation.SeleniumWebDriver;
 
 public class AnnotationHelper {
+    private AnnotationHelper() {
+        // Util class has a private constructor
+    }
+
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static Annotation getWebDriverAnnotation(Object testCase) {
         Class[] annotations = { SeleniumWebDriver.class, PhantomJsDriver.class, SeleniumJBrowserDriver.class,
                 SeleniumFirefoxDriver.class, SeleniumChromeDriver.class };
         for (Class<? extends Annotation> annotation : annotations) {
             for (Field field : FieldUtils.getFieldsWithAnnotation(testCase.getClass(), annotation)) {
-                // this.webDriver = (WebDriver) getFieldValue(testCase, field);
-                // this.webDriverField = field;
                 return field.getAnnotation(annotation);
             }
         }
@@ -27,7 +29,7 @@ public class AnnotationHelper {
         throw new IllegalArgumentException(createErrorText());
     }
 
-    private static String createErrorText() {
+    static String createErrorText() {
         String annotationName = org.selenium.annotation.SeleniumWebDriver.class.getSimpleName();
         return String.format("Annotate public attribute of type WebDriver with @%s annotation.", annotationName);
     }

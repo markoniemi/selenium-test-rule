@@ -93,25 +93,21 @@ public class SeleniumTestRule implements MethodRule {
      */
     // TODO improve error handling
     public void failed(Throwable throwable, Description description) throws IOException {
-        log.debug("{} failed", description.getDisplayName());
+        log.debug("{} failed with error {}", description.getDisplayName(), throwable.getMessage());
         setWebDriverToTest(testCase);
         if (this.webDriver == null) {
-            throw new IllegalArgumentException(createErrorText());
+            throw new IllegalArgumentException(AnnotationHelper.createErrorText());
         }
         try {
             ErrorWriter errorWriter = new ErrorWriter(webDriver, screenshotDirectory, createSubdirectoryForTestCase);
             errorWriter.writeBrowserSource(description);
             errorWriter.writeScreenshot(description);
-            // } catch (IOException e) {
         } catch (NoSuchWindowException e) {
             throw new NoSuchWindowException(
                     "Unable to create screenshot, WebDriver was closed? Do not close or quit WebDriver in @After method.",
                     e);
-        } catch (SeleniumException e) {
-            e.printStackTrace();
         } catch (Exception e) {
-            // throw e;
-            e.printStackTrace();
+            log.error(e);
         }
     }
 
@@ -132,11 +128,5 @@ public class SeleniumTestRule implements MethodRule {
             AnnotationHelper.setWebDriverToTest(testCase, webDriverField, webDriver);
         }
         return this.webDriver;
-    }
-
-    // TODO this is copy of method in AnnotationHelper
-    private String createErrorText() {
-        String annotationName = org.selenium.annotation.SeleniumWebDriver.class.getSimpleName();
-        return String.format("Annotate public attribute of type WebDriver with @%s annotation.", annotationName);
     }
 }

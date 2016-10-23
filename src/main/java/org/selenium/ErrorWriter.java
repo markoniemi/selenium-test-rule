@@ -20,14 +20,14 @@ public class ErrorWriter {
         this.createSubdirectoryForTestCase = createSubdirectoryForTestCase;
     }
 
-    public void writeBrowserSource(Description description) throws FileNotFoundException, IOException {
+    public void writeBrowserSource(Description description) throws IOException {
         byte[] source = webDriver.getPageSource().getBytes();
         File outputFile = getOutputFile(description.getClassName(), description.getMethodName(), ".html");
         FileUtils.writeByteArrayToFile(outputFile, source);
         System.out.println("[[ATTACHMENT|" + outputFile.getPath() + "]]");
     }
 
-    public void writeScreenshot(Description description) throws FileNotFoundException, IOException {
+    public void writeScreenshot(Description description) throws IOException {
         byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
         File outputFile = getOutputFile(description.getClassName(), description.getMethodName(), ".png");
         FileUtils.writeByteArrayToFile(outputFile, screenshot);
@@ -37,8 +37,7 @@ public class ErrorWriter {
     private File getOutputFile(String className, String methodName, String fileExtension) throws IOException {
         File outputDir = new File(screenshotDirectory + "/" + (createSubdirectoryForTestCase ? className : ""));
         outputDir.mkdirs();
-        File outputFile = new File(outputDir, className + "-" + methodName + fileExtension);
-        return outputFile;
+        return new File(outputDir, className + "-" + methodName + fileExtension);
     }
 
 }
