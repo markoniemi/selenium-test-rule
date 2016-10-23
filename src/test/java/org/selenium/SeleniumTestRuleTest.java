@@ -82,6 +82,7 @@ public class SeleniumTestRuleTest {
 	}
 
 	@Test(expected = NoSuchElementException.class)
+	@Ignore("Jenkins causes JavaFX detected no fonts error with jbrowserdriver")
 	public void jBrowserDriverTest() throws Throwable {
 		Result result = runTest(JBrowserDriverTest.class);
 		throw result.getFailures().get(0).getException();
