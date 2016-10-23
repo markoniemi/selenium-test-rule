@@ -5,9 +5,8 @@
 	<artifactId>selenium-test-rule</artifactId>
 	<version>0.2-SNAPSHOT</version>
 	<properties>
-		<selenium.version>2.42.2</selenium.version>
+		<selenium.version>2.53.1</selenium.version>
 		<junit.version>4.12</junit.version>
-		<phantomjs.version>1.9.7</phantomjs.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -25,7 +24,7 @@
 		<dependency>
 			<groupId>com.machinepublishers</groupId>
 			<artifactId>jbrowserdriver</artifactId>
-			<version>[0.10.2, 2.0)</version>
+			<version>0.17.0</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.seleniumhq.selenium</groupId>
@@ -41,7 +40,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- jBrowserDriver use slf4j -->
+		<!-- jBrowserDriver uses slf4j -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
@@ -71,9 +70,14 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.github.detro</groupId>
+			<groupId>com.codeborne</groupId>
 			<artifactId>phantomjsdriver</artifactId>
-			<version>1.2.0</version>
+			<version>1.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>1.4.10</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -101,20 +105,17 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>com.github.klieber</groupId>
-				<artifactId>phantomjs-maven-plugin</artifactId>
-				<version>0.7</version>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.7.201606060606</version>
 				<executions>
 					<execution>
 						<goals>
-							<goal>install</goal>
+							<goal>prepare-agent</goal>
+							<goal>report</goal>
 						</goals>
 					</execution>
 				</executions>
-				<configuration>
-					<outputDirectory>${appsDir}</outputDirectory>
-					<version>${phantomjs.version}</version>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

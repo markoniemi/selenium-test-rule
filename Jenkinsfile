@@ -20,6 +20,14 @@ node {
 //  }
   stage ('Site') {
     sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore -DskipTests=true site"
+    publishHTML(target: [
+        reportName : 'Maven Site',
+        reportDir:   'target/site',
+        reportFiles: 'index.html',
+        keepAll:     true,
+        alwaysLinkToLastBuild: true,
+        allowMissing: true
+    ])    
   }
   stage ('Sonar') {
     if (isTimeBetween(13,19)){

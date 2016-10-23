@@ -1,7 +1,5 @@
 package org.selenium;
 
-import java.lang.annotation.Annotation;
-
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -83,8 +81,7 @@ public class SeleniumTestRuleTest {
 		throw result.getFailures().get(0).getException();
 	}
 
-	@Test(expected = NullPointerException.class)
-	@Ignore
+	@Test(expected = NoSuchElementException.class)
 	public void jBrowserDriverTest() throws Throwable {
 		Result result = runTest(JBrowserDriverTest.class);
 		throw result.getFailures().get(0).getException();
@@ -96,8 +93,8 @@ public class SeleniumTestRuleTest {
 		Result result = runTest(FirefoxDriverTest.class);
 		throw result.getFailures().get(0).getException();
 	}
-	@Test(expected = NullPointerException.class)
-	@Ignore("driver installation not yet done")
+	@Test(expected = NoSuchElementException.class)
+	@Ignore("Jenkins does not have xfvb or chrome")
 	public void chromeDriverTest() throws Throwable {
 		Result result = runTest(ChromeDriverTest.class);
 		throw result.getFailures().get(0).getException();

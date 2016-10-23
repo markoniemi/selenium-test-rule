@@ -1,7 +1,6 @@
 package org.selenium.test;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -12,7 +11,6 @@ import org.selenium.annotation.SeleniumFirefoxDriver;
 import lombok.Data;
 
 @Data
-@Ignore
 public class FirefoxDriverTest {
 	@SeleniumFirefoxDriver
 	public WebDriver webDriver;
