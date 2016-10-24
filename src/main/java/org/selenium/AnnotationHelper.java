@@ -7,7 +7,6 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 import org.openqa.selenium.WebDriver;
 import org.selenium.annotation.PhantomJsDriver;
 import org.selenium.annotation.SeleniumChromeDriver;
-import org.selenium.annotation.SeleniumFirefoxDriver;
 import org.selenium.annotation.SeleniumJBrowserDriver;
 import org.selenium.annotation.SeleniumWebDriver;
 
@@ -19,7 +18,7 @@ public class AnnotationHelper {
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static Annotation getWebDriverAnnotation(Object testCase) {
         Class[] annotations = { SeleniumWebDriver.class, PhantomJsDriver.class, SeleniumJBrowserDriver.class,
-                SeleniumFirefoxDriver.class, SeleniumChromeDriver.class };
+                SeleniumChromeDriver.class };
         for (Class<? extends Annotation> annotation : annotations) {
             for (Field field : FieldUtils.getFieldsWithAnnotation(testCase.getClass(), annotation)) {
                 return field.getAnnotation(annotation);

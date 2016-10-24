@@ -16,7 +16,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 public class SeleniumTestRule implements MethodRule {
-    public static final String DEFAULT_SCREENSHOT_DIRECTORY = "target/surefire-reports/";
+    public static final String DEFAULT_SCREENSHOT_DIRECTORY = "target/failsafe-reports/";
     private WebDriver webDriver;
     private String screenshotDirectory;
     private Object testCase;

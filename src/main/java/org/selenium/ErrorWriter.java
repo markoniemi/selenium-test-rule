@@ -23,14 +23,12 @@ public class ErrorWriter {
         byte[] source = webDriver.getPageSource().getBytes();
         File outputFile = getOutputFile(description.getClassName(), description.getMethodName(), ".html");
         FileUtils.writeByteArrayToFile(outputFile, source);
-        System.out.println("[[ATTACHMENT|" + outputFile.getPath() + "]]");
     }
 
     public void writeScreenshot(Description description) throws IOException {
         byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
         File outputFile = getOutputFile(description.getClassName(), description.getMethodName(), ".png");
         FileUtils.writeByteArrayToFile(outputFile, screenshot);
-        System.out.println("[[ATTACHMENT|" + outputFile.getPath() + "]]");
     }
 
     private File getOutputFile(String className, String methodName, String fileExtension) throws IOException {
