@@ -14,10 +14,10 @@ node {
     sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore package"
     step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
   }
-//  stage ('Integration test') {
-//    sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore install"
-//    step([$class: 'JUnitResultArchiver', testResults: '**/target/failsafe-reports/TEST-*.xml'])
-//  }
+  stage ('Integration test') {
+    sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore verify"
+    step([$class: 'JUnitResultArchiver', testResults: '**/target/failsafe-reports/TEST-*.xml'])
+  }
   stage ('Site') {
     sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore -DskipTests=true site"
     publishHTML(target: [
