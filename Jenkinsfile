@@ -15,7 +15,7 @@ node {
     step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
   }
   stage ('Integration test') {
-    sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore verify"
+    sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore install verify"
     step([$class: 'JUnitResultArchiver', testResults: '**/target/failsafe-reports/TEST-*.xml'])
   }
   stage ('Site') {
