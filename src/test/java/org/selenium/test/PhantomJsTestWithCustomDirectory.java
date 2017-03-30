@@ -33,8 +33,8 @@ public class PhantomJsTestWithCustomDirectory {
 
     @Test
     public void phantomJsTest() {
-        webDriver.get("https://www.google.fi");
-        Assert.assertEquals("Google", webDriver.getTitle());
+        webDriver.get("file://localhost/" + System.getProperty("user.dir") + "/src/test/resources/test.html");
+        Assert.assertEquals("Test", webDriver.getTitle());
         webDriver.findElement(By.id("nonexistent"));
     }
 }
