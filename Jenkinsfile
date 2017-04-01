@@ -11,11 +11,11 @@ node {
     sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore clean package -DskipTests=true"
   }
   stage ('Test') {
-    sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore package"
+    sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore package -Dwdm.phantomjsDriverVersion=2.1.1"
     step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
   }
   stage ('Integration test') {
-    sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore install verify"
+    sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore install verify -Dwdm.phantomjsDriverVersion=2.1.1"
     step([$class: 'JUnitResultArchiver', testResults: '**/target/failsafe-reports/TEST-*.xml'])
   }
   stage ('Site') {
