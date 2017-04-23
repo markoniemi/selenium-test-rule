@@ -10,4 +10,5 @@ import java.lang.annotation.Target;
 public @interface PhantomJsDriver {
     public String phantomJsPathProperty() default "";
     public String phantomJsPath() default "";
+    public String version() default "";
 }

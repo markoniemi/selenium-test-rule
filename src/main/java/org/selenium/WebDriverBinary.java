@@ -24,7 +24,7 @@ public class WebDriverBinary {
     public static WebDriver createDriver(Annotation webDriverAnnotation) throws IllegalAccessException {
         WebDriver webDriver = null;
         if (webDriverAnnotation instanceof PhantomJsDriver) {
-            webDriver = createPhantomJsDriver();
+            webDriver = createPhantomJsDriver(((PhantomJsDriver) webDriverAnnotation).version());
         } else if (webDriverAnnotation instanceof SeleniumJBrowserDriver) {
             webDriver = createJBrowserDriver();
         } else if (webDriverAnnotation instanceof SeleniumChromeDriver) {
@@ -33,8 +33,8 @@ public class WebDriverBinary {
         return webDriver;
     }
 
-    private static WebDriver createPhantomJsDriver() {
-        PhantomJsDriverManager.getInstance().setup();
+    private static WebDriver createPhantomJsDriver(String version) {
+        PhantomJsDriverManager.getInstance().version(version).setup();
         DesiredCapabilities capabilities = new DesiredCapabilities();
         WebDriver webDriver = new PhantomJSDriver(capabilities);
         webDriver.manage().window().setSize(new Dimension(800, 600));

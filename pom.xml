@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.selenium</groupId>
 	<artifactId>selenium-test-rule</artifactId>
-	<version>0.2-SNAPSHOT</version>
+	<version>0.3-SNAPSHOT</version>
 	<properties>
 		<selenium.version>2.53.1</selenium.version>
 		<junit.version>4.12</junit.version>
