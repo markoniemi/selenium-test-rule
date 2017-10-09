@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Data
 public class PhantomJsTestWithAutomaticDriverCreate {
-    @PhantomJsDriver
+    @PhantomJsDriver(version="1.9.7")
     public WebDriver webDriver;
     @Rule
     public SeleniumTestRule seleniumTestRule = new SeleniumTestRule();
