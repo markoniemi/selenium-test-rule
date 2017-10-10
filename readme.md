@@ -1,4 +1,4 @@
-
+[![CircleCI](https://circleci.com/gh/markoniemi/selenium-test-rule.svg?style=svg)](https://circleci.com/gh/markoniemi/selenium-test-rule)[![Build Status](https://travis-ci.org/markoniemi/selenium-test-rule.svg?branch=master)](https://travis-ci.org/markoniemi/selenium-test-rule)
 
 Upload file to bintray
 -
