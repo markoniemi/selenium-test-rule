@@ -5,7 +5,7 @@
         <server>
             <id>bintray-markoniemi-maven-repo</id>
             <username>markoniemi</username>
-            <password>$BINTRAY_API_KEY</password>
+            <password>${env.BINTRAY_API_KEY}</password>
         </server>
     </servers>
     <profiles>
