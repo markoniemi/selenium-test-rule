@@ -21,7 +21,7 @@ public class WebDriverBinary {
         // Util class has a private constructor
     }
 
-    public static WebDriver createDriver(Annotation webDriverAnnotation) throws IllegalAccessException {
+    public static WebDriver createDriver(Annotation webDriverAnnotation) {
         WebDriver webDriver = null;
         if (webDriverAnnotation instanceof PhantomJsDriver) {
             webDriver = createPhantomJsDriver(((PhantomJsDriver) webDriverAnnotation).version());

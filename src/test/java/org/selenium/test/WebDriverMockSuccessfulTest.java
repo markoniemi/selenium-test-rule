@@ -18,5 +18,6 @@ public class WebDriverMockSuccessfulTest {
 
     @Test
     public void successfulTest() {
+        // empty test
     }
 }

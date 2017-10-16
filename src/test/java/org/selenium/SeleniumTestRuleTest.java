@@ -32,7 +32,7 @@ public class SeleniumTestRuleTest {
 			WebDriver webDriver = seleniumTestRule.setWebDriverToTest(webDriverTest);
 			Assert.fail();
 		} catch (IllegalArgumentException e) {
-
+			// TODO re-write this test
 		}
 	}
 	

@@ -50,9 +50,7 @@ public class AnnotationHelper {
                     throw new IllegalArgumentException(createErrorText());
                 }
             }
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(createErrorText(), e);
-        } catch (IllegalAccessException e) {
+        } catch (IllegalArgumentException | IllegalAccessException e) {
             throw new IllegalArgumentException(createErrorText(), e);
         }
         return null;

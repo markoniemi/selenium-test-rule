@@ -31,10 +31,11 @@ public class ErrorWriter {
         FileUtils.writeByteArrayToFile(outputFile, screenshot);
     }
 
-    private File getOutputFile(String className, String methodName, String fileExtension) throws IOException {
+    private File getOutputFile(String className, String methodName, String fileExtension) {
         File outputDir = new File(screenshotDirectory + "/" + (createSubdirectoryForTestCase ? className : ""));
         outputDir.mkdirs();
         return new File(outputDir, className + "-" + methodName + fileExtension);
     }
+
 
 }

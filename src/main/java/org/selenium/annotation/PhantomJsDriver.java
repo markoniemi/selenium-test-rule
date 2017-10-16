@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface PhantomJsDriver {
-    public String phantomJsPathProperty() default "";
-    public String phantomJsPath() default "";
-    public String version() default "";
+    String phantomJsPathProperty() default "";
+    String phantomJsPath() default "";
+    String version() default "";
 }

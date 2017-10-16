@@ -26,8 +26,7 @@ public class WebDriverMock extends HtmlUnitDriver implements TakesScreenshot {
         }
     }
 
-    private BufferedImage createImage() throws IOException {
-        BufferedImage image = new BufferedImage(64, 64, BufferedImage.TYPE_INT_RGB);
-        return image;
+    private BufferedImage createImage() {
+        return new BufferedImage(64, 64, BufferedImage.TYPE_INT_RGB);
     }
 }

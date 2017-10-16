@@ -90,7 +90,7 @@ public class SeleniumTestRule implements MethodRule {
      * @throws IOException
      */
     // TODO improve error handling
-    public void failed(Throwable throwable, Description description) throws IOException {
+    public void failed(Throwable throwable, Description description) {
         log.debug("{} failed with error {}", description.getDisplayName(), throwable.getMessage());
         setWebDriverToTest(testCase);
         if (this.webDriver == null) {
