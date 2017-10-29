@@ -4,12 +4,11 @@ import java.lang.annotation.Annotation;
 
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.selenium.annotation.PhantomJsDriver;
-import org.selenium.annotation.SeleniumChromeDriver;
-import org.selenium.annotation.SeleniumJBrowserDriver;
+import org.selenium.annotation.ChromeDriver;
+import org.selenium.annotation.JBrowserDriver;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.PhantomJsDriverManager;
@@ -25,9 +24,9 @@ public class WebDriverBinary {
         WebDriver webDriver = null;
         if (webDriverAnnotation instanceof PhantomJsDriver) {
             webDriver = createPhantomJsDriver(((PhantomJsDriver) webDriverAnnotation).version());
-        } else if (webDriverAnnotation instanceof SeleniumJBrowserDriver) {
+        } else if (webDriverAnnotation instanceof JBrowserDriver) {
             webDriver = createJBrowserDriver();
-        } else if (webDriverAnnotation instanceof SeleniumChromeDriver) {
+        } else if (webDriverAnnotation instanceof ChromeDriver) {
             webDriver = createChromeDriver();
         }
         return webDriver;
@@ -47,6 +46,6 @@ public class WebDriverBinary {
 
     private static WebDriver createChromeDriver() {
         ChromeDriverManager.getInstance().setup();
-        return new ChromeDriver();
+        return new org.openqa.selenium.chrome.ChromeDriver();
     }
 }

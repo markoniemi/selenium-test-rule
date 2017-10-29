@@ -6,13 +6,13 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.selenium.SeleniumTestRule;
-import org.selenium.annotation.SeleniumChromeDriver;
+import org.selenium.annotation.ChromeDriver;
 
 import lombok.Data;
 
 @Data
 public class ChromeDriverTest {
-	@SeleniumChromeDriver
+	@ChromeDriver
 	public WebDriver webDriver;
 	@Rule
 	public SeleniumTestRule seleniumTestRule = new SeleniumTestRule();

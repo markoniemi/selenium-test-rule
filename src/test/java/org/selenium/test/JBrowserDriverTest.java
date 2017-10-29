@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.selenium.SeleniumTestRule;
-import org.selenium.annotation.SeleniumJBrowserDriver;
+import org.selenium.annotation.JBrowserDriver;
 
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;
@@ -14,7 +14,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @Data
 public class JBrowserDriverTest {
-	@SeleniumJBrowserDriver
+	@JBrowserDriver
 	public WebDriver webDriver;
 	@Rule
 	public SeleniumTestRule seleniumTestRule = new SeleniumTestRule();

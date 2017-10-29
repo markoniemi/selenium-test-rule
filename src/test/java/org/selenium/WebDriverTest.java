@@ -1,12 +1,11 @@
 package org.selenium;
 
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.selenium.annotation.SeleniumWebDriver;
+import org.selenium.annotation.WebDriver;
 
 public class WebDriverTest {
-    @SeleniumWebDriver
-    public WebDriver webDriver;
+    @WebDriver
+    public org.openqa.selenium.WebDriver webDriver;
 
     @Test
     public void dummy() {

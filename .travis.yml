@@ -7,11 +7,8 @@ addons:
     organization: "markoniemi-github"
     token: $SONAR_CLOUD_TOKEN
 script:
-  # TODO move JaCoCo to pom.xml
-  # JaCoCo is used to have code coverage, the agent has to be activated
-  # to deploy to bintray, build with:
-  # mvn clean deploy org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar --settings settings.xml
-  mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+  # mvn clean package deploy --settings settings.xml
+  mvn clean install sonar:sonar
 cache:
   directories:
     - '$HOME/.m2/repository'

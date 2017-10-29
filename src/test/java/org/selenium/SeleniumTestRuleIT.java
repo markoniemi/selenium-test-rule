@@ -8,12 +8,7 @@ import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.NoSuchWindowException;
-import org.selenium.test.ChromeDriverTest;
-import org.selenium.test.JBrowserDriverTest;
-import org.selenium.test.PhantomJsTest;
-import org.selenium.test.PhantomJsTestWithAutomaticDriverCreate;
-import org.selenium.test.PhantomJsTestWithClose;
-import org.selenium.test.PhantomJsTestWithCustomDirectory;
+import org.selenium.test.*;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -48,7 +43,24 @@ public class SeleniumTestRuleIT {
         Result result = runTest(PhantomJsTestWithCustomDirectory.class);
         throw result.getFailures().get(0).getException();
     }
-    
+
+    @Test(expected = IllegalArgumentException.class)
+    public void phantomJsTestWithPrivateField() throws Throwable {
+        Result result = runTest(PhantomJsTestWithFinalField.class);
+        throw result.getFailures().get(0).getException();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void phantomJsTestWithNonWebDriverField() throws Throwable {
+        Result result = runTest(PhantomJsTestWithNonWebDriverField.class);
+        throw result.getFailures().get(0).getException();
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void phantomJsTestWithoutAnnotation() throws Throwable {
+        Result result = runTest(PhantomJsTestWithoutAnnotation.class);
+        throw result.getFailures().get(0).getException();
+    }
+
     @Test(expected = NoSuchElementException.class)
     @Ignore("Jenkins causes JavaFX detected no fonts error with jbrowserdriver")
     public void jBrowserDriverTest() throws Throwable {

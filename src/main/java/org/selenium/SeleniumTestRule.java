@@ -28,6 +28,10 @@ public class SeleniumTestRule implements MethodRule {
         this(DEFAULT_SCREENSHOT_DIRECTORY, false);
     }
 
+    public SeleniumTestRule(Object testCase) {
+        this.testCase = testCase;
+    }
+
     public SeleniumTestRule(String screenshotDirectory, boolean createSubdirectoryForTestCase) {
         this(null, screenshotDirectory, createSubdirectoryForTestCase);
     }
@@ -36,6 +40,12 @@ public class SeleniumTestRule implements MethodRule {
         this.webDriver = webDriver;
         this.screenshotDirectory = screenshotDirectory;
         this.createSubdirectoryForTestCase = createSubdirectoryForTestCase;
+    }
+
+    public static void initWebDriver(Class testCase){
+        SeleniumTestRule seleniumTestRule = new SeleniumTestRule(testCase);
+
+//        seleniumTestRule.a
     }
 
     @Override
@@ -56,7 +66,7 @@ public class SeleniumTestRule implements MethodRule {
                     failed(e, description);
                     throw e;
                 } finally {
-                    finished(description);
+                    finished();
                 }
             }
         };
@@ -69,6 +79,7 @@ public class SeleniumTestRule implements MethodRule {
      */
     public void starting(Description description) throws IllegalAccessException {
         log.debug("starting {}", description.getDisplayName());
+//        WebDriverInitializer.initializeWebDriver(testCase);
         setWebDriverToTest(testCase);
         if (this.webDriver == null) {
             // test case did not initialize webDriver, initialize it
@@ -112,7 +123,7 @@ public class SeleniumTestRule implements MethodRule {
     /**
      * Invoked when a test method finishes (whether passing or failing)
      */
-    public void finished(Description description) {
+    public void finished() {
         if (webDriver != null) {
             webDriver.quit();
         }
