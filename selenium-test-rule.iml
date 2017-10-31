@@ -55,18 +55,17 @@
     <orderEntry type="library" name="Maven: xml-apis:xml-apis:1.4.01" level="project" />
     <orderEntry type="library" name="Maven: com.machinepublishers:jbrowserdriver:0.17.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient-cache:4.5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.2" level="project" />
     <orderEntry type="library" name="Maven: org.zeroturnaround:zt-process:1.3" level="project" />
     <orderEntry type="library" name="Maven: org.zeroturnaround:zt-exec:1.7" level="project" />
     <orderEntry type="library" name="Maven: com.sun.jna:jna:3.0.9" level="project" />
     <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="Maven: io.github.lukehutch:fast-classpath-scanner:1.93.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.6" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.21" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.6" level="project" />
-    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.16.18" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.6" level="project" />
+    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.14.6" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.6" level="project" />
-    <orderEntry type="library" name="Maven: commons-io:commons-io:2.6" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.6" level="project" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:2.5" level="project" />
     <orderEntry type="library" name="Maven: com.codeborne:phantomjsdriver:1.4.3" level="project" />
     <orderEntry type="library" name="Maven: io.github.bonigarcia:webdrivermanager:1.7.2" level="project" />
     <orderEntry type="library" name="Maven: com.typesafe:config:1.2.1" level="project" />
