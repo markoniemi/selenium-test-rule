@@ -8,7 +8,7 @@ addons:
     token: $SONAR_CLOUD_TOKEN
 script:
   # mvn clean package deploy --settings settings.xml
-  mvn clean install sonar:sonar
+  mvn clean install sonar:sonar deploy --settings settings.xml
 cache:
   directories:
     - '$HOME/.m2/repository'

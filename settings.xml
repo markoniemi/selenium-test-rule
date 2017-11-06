@@ -7,6 +7,10 @@
             <username>markoniemi</username>
             <password>${BINTRAY_API_KEY}</password>
         </server>
+        <server>
+            <id>packagecloud-markoniemi</id>
+            <password>${PACKAGE_CLOUD_TOKEN}</password>
+        </server>
     </servers>
     <profiles>
         <profile>

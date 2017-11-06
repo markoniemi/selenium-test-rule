@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.markoniemi</groupId>
     <artifactId>selenium-test-rule</artifactId>
-    <version>0.5</version>
+    <version>0.6-SNAPSHOT</version>
     <scm>
         <url>https://github.com/markoniemi/selenium-test-rule</url>
         <connection>scm:git:https://github.com/markoniemi/selenium-test-rule.git</connection>
@@ -142,6 +142,13 @@
                 <version>2.5.2</version>
             </plugin>
         </plugins>
+        <extensions>
+            <extension>
+                <groupId>io.packagecloud.maven.wagon</groupId>
+                <artifactId>maven-packagecloud-wagon</artifactId>
+                <version>0.0.6</version>
+            </extension>
+        </extensions>
     </build>
     <reporting>
         <plugins>
@@ -220,8 +227,12 @@
     </profiles>
     <distributionManagement>
         <repository>
-            <id>bintray-markoniemi-maven-repo</id>
-            <url>https://api.bintray.com/maven/markoniemi/maven-repo/selenium-test-rule/;publish=1</url>
+            <id>packagecloud-markoniemi</id>
+            <url>packagecloud+https://packagecloud.io/markoniemi/maven-repo</url>
         </repository>
+        <snapshotRepository>
+            <id>packagecloud-markoniemi</id>
+            <url>packagecloud+https://packagecloud.io/markoniemi/maven-repo</url>
+        </snapshotRepository>
     </distributionManagement>
 </project>
