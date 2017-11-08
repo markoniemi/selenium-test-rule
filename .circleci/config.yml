@@ -14,9 +14,11 @@ jobs:
             - ~/.m2
           key: selenium-test-rule-{{ checksum "pom.xml" }}
       - run: mvn verify
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: selenium-test-rule-{{ checksum "pom.xml" }}
       - store_test_results:
           path: target/surefire-reports
       - store_test_results:
           path: target/failsafe-reports
-      - store_artifacts:
-          path: target/*.jar
