@@ -21,7 +21,6 @@ public class ChromeDriverTest {
 	public void chromeDriverTest() {
         webDriver.get("file://localhost/" + System.getProperty("user.dir") + "/src/test/resources/test.html");
         Assert.assertEquals("Test", webDriver.getTitle());
-		// jBrowserDriver does not throw NoSuchElementException when element is
-		webDriver.findElement(By.id("nonexistent")).click();
+		webDriver.findElement(By.id("test")).click();
 	}
 }
