@@ -3,7 +3,8 @@ jobs:
   build:
     working_directory: ~/selenium-test-rule
     docker:
-      - image: circleci/openjdk:8-jdk-browsers
+      #- image: circleci/openjdk:8-jdk-browsers
+      - image: okode/openjdk-jfx
     steps:
       - checkout
       - restore_cache:
