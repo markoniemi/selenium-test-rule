@@ -3,9 +3,9 @@ jobs:
   build:
     working_directory: ~/selenium-test-rule
     docker:
-      #- image: circleci/openjdk:8-jdk-browsers
-      - image: okode/openjdk-jfx
+      - image: circleci/openjdk:8-jdk-browsers
     steps:
+      - run: apt-get update; apt-get install openjfx
       - checkout
       - restore_cache:
           key: selenium-test-rule-{{ checksum "pom.xml" }}

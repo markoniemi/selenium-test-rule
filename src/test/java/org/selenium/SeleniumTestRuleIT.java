@@ -1,6 +1,7 @@
 package org.selenium;
 
 import lombok.extern.log4j.Log4j2;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.NoSuchWindowException;
@@ -51,26 +52,22 @@ public class SeleniumTestRuleIT {
         runTest(PhantomJsTestWithoutAnnotation.class);
     }
 
-    //    @Ignore("Jenkins causes JavaFX detected no fonts error with jbrowserdriver")
     @Test
     public void jBrowserTest() throws Throwable {
         runTest(JBrowserTest.class);
     }
 
-    //    @Ignore("Jenkins causes JavaFX detected no fonts error with jbrowserdriver")
     @Test(expected = NoSuchElementException.class)
     public void jBrowserFailingTest() throws Throwable {
         runTest(JBrowserFailingTest.class);
     }
 
     @Test
-//    @Ignore("Jenkins does not have xfvb or chrome")
     public void chromeDriverTest() throws Throwable {
         runTest(ChromeDriverTest.class);
     }
 
     @Test(expected = NoSuchElementException.class)
-//    @Ignore("Jenkins does not have xfvb or chrome")
     public void chromeDriverFailingTest() throws Throwable {
         runTest(ChromeDriverFailingTest.class);
     }
