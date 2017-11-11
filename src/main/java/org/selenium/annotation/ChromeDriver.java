@@ -11,4 +11,5 @@ public @interface ChromeDriver {
     String BINARY_PATH_PROPERTY = "webdriver.chrome.driver";
     String binaryPathProperty() default "";
     String binaryPath() default "";
+    boolean headless() default true;
 }

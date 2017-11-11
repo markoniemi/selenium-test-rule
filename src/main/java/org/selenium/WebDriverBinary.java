@@ -27,7 +27,7 @@ public class WebDriverBinary {
         } else if (webDriverAnnotation instanceof JBrowserDriver) {
             webDriver = createJBrowserDriver();
         } else if (webDriverAnnotation instanceof ChromeDriver) {
-            webDriver = createChromeDriver();
+            webDriver = createChromeDriver(((ChromeDriver) webDriverAnnotation).headless());
         }
         return webDriver;
     }
@@ -44,12 +44,13 @@ public class WebDriverBinary {
         return new com.machinepublishers.jbrowserdriver.JBrowserDriver();
     }
 
-    // TODO add headless parameter
-    private static WebDriver createChromeDriver() {
+    private static WebDriver createChromeDriver(boolean headless) {
         ChromeDriverManager.getInstance().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("headless");
-        options.addArguments("window-size=1200x600");
+        if (headless) {
+            options.addArguments("headless");
+            options.addArguments("window-size=1200x600");
+        }
         return new org.openqa.selenium.chrome.ChromeDriver(options);
     }
 }
