@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/openjdk:8-jdk-browsers
     steps:
-      - run: apt-get update; apt-get install openjfx
+      - run: sudo apt-get update; sudo apt-get install openjfx
       - checkout
       - restore_cache:
           key: selenium-test-rule-{{ checksum "pom.xml" }}
