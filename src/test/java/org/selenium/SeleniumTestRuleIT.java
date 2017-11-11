@@ -1,85 +1,74 @@
 package org.selenium;
 
-import org.junit.Assert;
+import lombok.extern.log4j.Log4j2;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.JUnitCore;
-import org.junit.runner.Result;
-import org.junit.runner.notification.Failure;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.NoSuchWindowException;
 import org.selenium.test.*;
 
-import lombok.extern.log4j.Log4j2;
+import static org.selenium.SeleniumTestRuleTest.runTest;
 
 @Log4j2
 public class SeleniumTestRuleIT {
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void phantomJsTest() throws Throwable {
-        Result result = runTest(PhantomJsTest.class);
-        Assert.assertFalse(result.wasSuccessful());
-        throw result.getFailures().get(0).getException();
-        // Throwable exception = result.getFailures().get(0).getException();
-        // Assert.assertTrue(exception.toString(), exception instanceof
-        // NoSuchElementException);
+        runTest(PhantomJsTest.class);
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void phantomJsFailingTest() throws Throwable {
+        runTest(PhantomJsFailingTest.class);
     }
 
     @Test(expected = NoSuchElementException.class)
     public void phantomJsTestWithAutomaticDriverCreate() throws Throwable {
         // set system property phantomjs.binary before running this test
-        Result result = runTest(PhantomJsTestWithAutomaticDriverCreate.class);
-        Assert.assertFalse(result.wasSuccessful());
-        throw result.getFailures().get(0).getException();
+        runTest(PhantomJsTestWithAutomaticDriverCreate.class);
     }
 
     @Test(expected = NoSuchWindowException.class)
     public void phantomJsTestWithClose() throws Throwable {
-        Result result = runTest(PhantomJsTestWithClose.class);
-        throw result.getFailures().get(0).getException();
+        runTest(PhantomJsTestWithClose.class);
     }
 
     @Test(expected = NoSuchElementException.class)
     public void phantomJsTestWithCustomDirectory() throws Throwable {
-        Result result = runTest(PhantomJsTestWithCustomDirectory.class);
-        throw result.getFailures().get(0).getException();
+        runTest(PhantomJsTestWithCustomDirectory.class);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void phantomJsTestWithPrivateField() throws Throwable {
-        Result result = runTest(PhantomJsTestWithFinalField.class);
-        throw result.getFailures().get(0).getException();
+        runTest(PhantomJsTestWithFinalField.class);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void phantomJsTestWithNonWebDriverField() throws Throwable {
-        Result result = runTest(PhantomJsTestWithNonWebDriverField.class);
-        throw result.getFailures().get(0).getException();
+        runTest(PhantomJsTestWithNonWebDriverField.class);
     }
+
     @Test(expected = IllegalArgumentException.class)
     public void phantomJsTestWithoutAnnotation() throws Throwable {
-        Result result = runTest(PhantomJsTestWithoutAnnotation.class);
-        throw result.getFailures().get(0).getException();
+        runTest(PhantomJsTestWithoutAnnotation.class);
+    }
+
+    @Test
+    public void jBrowserTest() throws Throwable {
+        runTest(JBrowserTest.class);
     }
 
     @Test(expected = NoSuchElementException.class)
-    @Ignore("Jenkins causes JavaFX detected no fonts error with jbrowserdriver")
-    public void jBrowserDriverTest() throws Throwable {
-        Result result = runTest(JBrowserDriverTest.class);
-        throw result.getFailures().get(0).getException();
+    public void jBrowserFailingTest() throws Throwable {
+        runTest(JBrowserFailingTest.class);
     }
 
-    @Test(expected = NoSuchElementException.class)
-    @Ignore("Jenkins does not have xfvb or chrome")
+    @Test
     public void chromeDriverTest() throws Throwable {
-        Result result = runTest(ChromeDriverTest.class);
-        throw result.getFailures().get(0).getException();
+        runTest(ChromeDriverTest.class);
     }
 
-    private Result runTest(Class<?> test) {
-        Result result = JUnitCore.runClasses(test);
-        for (Failure failure : result.getFailures()) {
-            log.debug(failure.getMessage());
-        }
-        return result;
+    @Test(expected = NoSuchElementException.class)
+    public void chromeDriverFailingTest() throws Throwable {
+        runTest(ChromeDriverFailingTest.class);
     }
 }

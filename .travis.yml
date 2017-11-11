@@ -3,6 +3,7 @@ jdk: oraclejdk8
 dist: trusty
 install: true
 addons:
+  chrome: stable
   sonarcloud:
     organization: "markoniemi-github"
     token: $SONAR_CLOUD_TOKEN

@@ -37,23 +37,24 @@ public class SeleniumTestRuleTest {
 	}
 	
 	@Test
-	public void succeeded() {
-		Result result = runTest(WebDriverMockSuccessfulTest.class);
-		Assert.assertTrue(result.wasSuccessful());
+	public void webDriverMockSuccessfulTest() throws Throwable{
+		runTest(WebDriverMockSuccessfulTest.class);
 	}
 
 	@Test(expected = AssertionError.class)
-	public void failed() throws Throwable {
-		Result result = runTest(WebDriverMockFailedTest.class);
-		Assert.assertFalse(result.wasSuccessful());
-		throw result.getFailures().get(0).getException();
+	public void webDriverMockFailedTest() throws Throwable {
+		runTest(WebDriverMockFailedTest.class);
 	}
 
-    private Result runTest(Class<?> test) {
-        Result result = JUnitCore.runClasses(test);
-        for (Failure failure : result.getFailures()) {
-            log.debug(failure.getMessage());
-        }
-        return result;
-    }
+	public static Result runTest(Class<?> test) throws Throwable{
+		Result result = JUnitCore.runClasses(test);
+		for (Failure failure : result.getFailures()) {
+			log.debug(failure.getMessage());
+		}
+		if (result.wasSuccessful()){
+			return result;
+		}else{
+			throw result.getFailures().get(0).getException();
+		}
+	}
 }

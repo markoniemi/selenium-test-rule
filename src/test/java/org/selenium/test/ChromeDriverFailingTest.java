@@ -6,21 +6,21 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.selenium.SeleniumTestRule;
-import org.selenium.annotation.PhantomJsDriver;
+import org.selenium.annotation.ChromeDriver;
 
 import lombok.Data;
 
 @Data
-public class PhantomJsTestWithAutomaticDriverCreate {
-    @PhantomJsDriver(version="2.1.1")
+public class ChromeDriverFailingTest {
+    @ChromeDriver
     public WebDriver webDriver;
     @Rule
     public SeleniumTestRule seleniumTestRule = new SeleniumTestRule();
 
     @Test
-    public void phantomJsTest() {
+    public void chromeDriverTest() {
         webDriver.get("file://localhost/" + System.getProperty("user.dir") + "/src/test/resources/test.html");
         Assert.assertEquals("Test", webDriver.getTitle());
-        webDriver.findElement(By.id("nonexistent"));
+        webDriver.findElement(By.id("nonexistent")).click();
     }
 }

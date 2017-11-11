@@ -42,13 +42,8 @@
                     <groupId>org.seleniumhq.selenium</groupId>
                     <artifactId>selenium-server</artifactId>
                 </exclusion>
-                <!--<exclusion>-->
-                    <!--<groupId>org.slf4j</groupId>-->
-                    <!--<artifactId>slf4j-api</artifactId>-->
-                <!--</exclusion>-->
             </exclusions>
         </dependency>
-        <!-- jBrowserDriver uses slf4j -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

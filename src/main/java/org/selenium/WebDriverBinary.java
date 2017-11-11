@@ -1,18 +1,18 @@
 package org.selenium;
 
-import java.lang.annotation.Annotation;
-
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.selenium.annotation.PhantomJsDriver;
-import org.selenium.annotation.ChromeDriver;
-import org.selenium.annotation.JBrowserDriver;
-
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.PhantomJsDriverManager;
 import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.selenium.annotation.ChromeDriver;
+import org.selenium.annotation.JBrowserDriver;
+import org.selenium.annotation.PhantomJsDriver;
+
+import java.lang.annotation.Annotation;
 
 @Log4j2
 public class WebDriverBinary {
@@ -27,7 +27,7 @@ public class WebDriverBinary {
         } else if (webDriverAnnotation instanceof JBrowserDriver) {
             webDriver = createJBrowserDriver();
         } else if (webDriverAnnotation instanceof ChromeDriver) {
-            webDriver = createChromeDriver();
+            webDriver = createChromeDriver(((ChromeDriver) webDriverAnnotation).headless());
         }
         return webDriver;
     }
@@ -44,8 +44,13 @@ public class WebDriverBinary {
         return new com.machinepublishers.jbrowserdriver.JBrowserDriver();
     }
 
-    private static WebDriver createChromeDriver() {
+    private static WebDriver createChromeDriver(boolean headless) {
         ChromeDriverManager.getInstance().setup();
-        return new org.openqa.selenium.chrome.ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        if (headless) {
+            options.addArguments("headless");
+            options.addArguments("window-size=1200x600");
+        }
+        return new org.openqa.selenium.chrome.ChromeDriver(options);
     }
 }

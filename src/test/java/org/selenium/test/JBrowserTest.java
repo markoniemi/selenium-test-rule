@@ -1,26 +1,30 @@
 package org.selenium.test;
 
+import lombok.Data;
+import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.selenium.SeleniumTestRule;
-import org.selenium.annotation.PhantomJsDriver;
+import org.selenium.annotation.JBrowserDriver;
 
-import lombok.Data;
-
+@Log4j2
 @Data
-public class PhantomJsTestWithAutomaticDriverCreate {
-    @PhantomJsDriver(version="2.1.1")
+public class JBrowserTest {
+    @JBrowserDriver
     public WebDriver webDriver;
     @Rule
     public SeleniumTestRule seleniumTestRule = new SeleniumTestRule();
 
     @Test
-    public void phantomJsTest() {
+    public void jBrowserDriverTest() {
         webDriver.get("file://localhost/" + System.getProperty("user.dir") + "/src/test/resources/test.html");
         Assert.assertEquals("Test", webDriver.getTitle());
-        webDriver.findElement(By.id("nonexistent"));
+        WebElement webElement = webDriver.findElement(By.id("test"));
+        webElement.click();
+        log.debug(webDriver.getCurrentUrl());
     }
 }
