@@ -3,11 +3,10 @@ jdk: oraclejdk8
 dist: trusty
 install: true
 addons:
+  chrome: stable
   sonarcloud:
     organization: "markoniemi-github"
     token: $SONAR_CLOUD_TOKEN
-addons:
-  chrome: stable
 script:
   # mvn clean package deploy --settings settings.xml
   mvn clean install sonar:sonar deploy --settings settings.xml
