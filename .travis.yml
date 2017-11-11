@@ -6,6 +6,7 @@ addons:
   sonarcloud:
     organization: "markoniemi-github"
     token: $SONAR_CLOUD_TOKEN
+addons:
   chrome: stable
 script:
   # mvn clean package deploy --settings settings.xml
