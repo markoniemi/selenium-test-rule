@@ -42,12 +42,6 @@ public class SeleniumTestRule implements MethodRule {
         this.createSubdirectoryForTestCase = createSubdirectoryForTestCase;
     }
 
-    public static void initWebDriver(Class testCase){
-        SeleniumTestRule seleniumTestRule = new SeleniumTestRule(testCase);
-
-//        seleniumTestRule.a
-    }
-
     @Override
     public Statement apply(final Statement base, final FrameworkMethod method, final Object target) {
         testCase = target;
@@ -74,18 +68,12 @@ public class SeleniumTestRule implements MethodRule {
 
     /**
      * Invoked when a test method is about to start
-     * 
+     *
      * @throws IllegalAccessException
      */
     public void starting(Description description) throws IllegalAccessException {
         log.debug("starting {}", description.getDisplayName());
-//        WebDriverInitializer.initializeWebDriver(testCase);
-        setWebDriverToTest(testCase);
-        if (this.webDriver == null) {
-            // test case did not initialize webDriver, initialize it
-            this.webDriver = WebDriverBinary.createDriver(this.webDriverAnnotation);
-            AnnotationHelper.setWebDriverToTest(testCase, webDriverField, webDriver);
-        }
+        this.webDriver = WebDriverAnnotations.initializeWebDriver(testCase);
     }
 
     /**
@@ -97,13 +85,16 @@ public class SeleniumTestRule implements MethodRule {
 
     /**
      * Invoked when a test method fails
-     * 
+     *
      * @throws IOException
      */
     // TODO improve error handling
     public void failed(Throwable throwable, Description description) {
         log.debug("{} failed with error {}", description.getDisplayName(), throwable.getMessage());
-        setWebDriverToTest(testCase);
+        // if webDriver was created by the test case, the test rule does not have handle to it
+        if (this.webDriver == null) {
+            this.webDriver = AnnotationHelper.getWebDriver(testCase);
+        }
         if (this.webDriver == null) {
             throw new IllegalArgumentException(AnnotationHelper.createErrorText());
         }
@@ -134,7 +125,7 @@ public class SeleniumTestRule implements MethodRule {
             webDriverAnnotation = AnnotationHelper.getWebDriverAnnotation(testCase);
             webDriverField = AnnotationHelper.getFieldWithAnnotation(testCase, webDriverAnnotation);
             webDriver = AnnotationHelper.getWebDriver(testCase, webDriverField);
-            AnnotationHelper.setWebDriverToTest(testCase, webDriverField, webDriver);
+            AnnotationHelper.setWebDriverToField(testCase, webDriverField, webDriver);
         }
         return this.webDriver;
     }

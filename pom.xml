@@ -94,7 +94,7 @@
                 <version>2.18.1</version>
                 <configuration>
                     <includes>
-                        <include>**/SeleniumTestRuleTestSuite.java</include>
+                        <include>**/SeleniumTestRuleTest.java</include>
                     </includes>
                 </configuration>
             </plugin>
@@ -112,7 +112,8 @@
                 </executions>
                 <configuration>
                     <includes>
-                        <include>**/SeleniumTestRuleITSuite.java</include>
+                        <include>**/SeleniumTestRuleIT.java</include>
+                        <include>**/examples/*IT.java</include>
                     </includes>
                 </configuration>
             </plugin>

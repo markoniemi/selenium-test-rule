@@ -10,7 +10,7 @@ import org.selenium.SeleniumTestRule;
 import org.selenium.annotation.PhantomJsDriver;
 
 @Data
-public class PhantomJsTestWithFinalField {
+public class PhantomJsFinalFieldIT {
     @PhantomJsDriver
     private final WebDriver webDriver = null;
     @Rule

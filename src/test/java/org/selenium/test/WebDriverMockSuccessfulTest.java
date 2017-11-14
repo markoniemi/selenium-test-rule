@@ -1,17 +1,18 @@
 package org.selenium.test;
 
+import lombok.Data;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
 import org.selenium.SeleniumTestRule;
 import org.selenium.WebDriverMock;
-import org.selenium.annotation.WebDriver;
-
-import lombok.Data;
+import org.selenium.annotation.SeleniumWebDriver;
 
 @Data
 public class WebDriverMockSuccessfulTest {
-    @WebDriver
-    public org.openqa.selenium.WebDriver webDriver = new WebDriverMock();
+    @SeleniumWebDriver
+    public WebDriver webDriver = new WebDriverMock();
     @Rule
     public SeleniumTestRule seleniumTestRule = new SeleniumTestRule();
 

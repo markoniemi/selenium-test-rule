@@ -1,21 +1,16 @@
 package org.selenium.test;
 
 import junit.framework.TestCase;
-import lombok.Data;
 import org.junit.Assert;
-import org.junit.Rule;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.selenium.SeleniumTestRule;
-import org.selenium.WebDriverInitializer;
-import org.selenium.annotation.PhantomJsDriver;
+import org.selenium.WebDriverAnnotations;
 
-public class PhantomJsTestWithoutAnnotation extends TestCase {
+public class PhantomJsNoAnnotationsIT extends TestCase {
     public WebDriver webDriver;
 
     protected void setUp() throws Exception {
-        WebDriverInitializer.initializeWebDriver(this);
+        WebDriverAnnotations.initializeWebDriver(this);
     }
 
     public void testPhantomJsTest() {

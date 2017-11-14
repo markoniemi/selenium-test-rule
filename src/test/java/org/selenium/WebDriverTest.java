@@ -1,10 +1,10 @@
 package org.selenium;
 
 import org.junit.Test;
-import org.selenium.annotation.WebDriver;
+import org.selenium.annotation.SeleniumWebDriver;
 
 public class WebDriverTest {
-    @WebDriver
+    @SeleniumWebDriver
     public org.openqa.selenium.WebDriver webDriver;
 
     @Test
