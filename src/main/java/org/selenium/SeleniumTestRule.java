@@ -22,7 +22,6 @@ public class SeleniumTestRule implements MethodRule {
     private Object testCase;
     private boolean createSubdirectoryForTestCase;
     protected Annotation webDriverAnnotation;
-    private Field webDriverField;
 
     public SeleniumTestRule() {
         this(DEFAULT_SCREENSHOT_DIRECTORY, false);
@@ -123,7 +122,7 @@ public class SeleniumTestRule implements MethodRule {
     protected WebDriver setWebDriverToTest(Object testCase) {
         if (this.webDriver == null) {
             webDriverAnnotation = AnnotationHelper.getWebDriverAnnotation(testCase);
-            webDriverField = AnnotationHelper.getFieldWithAnnotation(testCase, webDriverAnnotation);
+            Field webDriverField = AnnotationHelper.getFieldWithAnnotation(testCase, webDriverAnnotation);
             webDriver = AnnotationHelper.getWebDriver(testCase, webDriverField);
             AnnotationHelper.setWebDriverToField(testCase, webDriverField, webDriver);
         }

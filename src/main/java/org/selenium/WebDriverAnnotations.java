@@ -6,6 +6,10 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
 public class WebDriverAnnotations {
+    private WebDriverAnnotations() {
+        // util class has a private constructor
+    }
+
     public static WebDriver initializeWebDriver(Object testCase) {
         Annotation webDriverAnnotation = AnnotationHelper.getWebDriverAnnotation(testCase);
         Field webDriverField = AnnotationHelper.getFieldWithAnnotation(testCase, webDriverAnnotation);
