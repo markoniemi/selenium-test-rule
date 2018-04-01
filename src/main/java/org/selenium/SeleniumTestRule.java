@@ -12,9 +12,9 @@ import org.junit.runners.model.Statement;
 import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.WebDriver;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
-@Log4j2
+@Slf4j
 public class SeleniumTestRule implements MethodRule {
     public static final String DEFAULT_SCREENSHOT_DIRECTORY = "target/failsafe-reports/";
     private WebDriver webDriver;
@@ -90,7 +90,8 @@ public class SeleniumTestRule implements MethodRule {
     // TODO improve error handling
     public void failed(Throwable throwable, Description description) {
         log.debug("{} failed with error {}", description.getDisplayName(), throwable.getMessage());
-        // if webDriver was created by the test case, the test rule does not have handle to it
+        // if webDriver was created by the test case, the test rule does not have a
+        // handle to it
         if (this.webDriver == null) {
             this.webDriver = AnnotationHelper.getWebDriver(testCase);
         }
@@ -106,7 +107,7 @@ public class SeleniumTestRule implements MethodRule {
                     "Unable to create screenshot, WebDriver was closed? Do not close or quit WebDriver in @After method.",
                     e);
         } catch (Exception e) {
-            log.error(e);
+            log.error(e.getMessage(), e);
         }
     }
 
@@ -121,10 +122,17 @@ public class SeleniumTestRule implements MethodRule {
 
     protected WebDriver setWebDriverToTest(Object testCase) {
         if (this.webDriver == null) {
-            webDriverAnnotation = AnnotationHelper.getWebDriverAnnotation(testCase);
-            Field webDriverField = AnnotationHelper.getFieldWithAnnotation(testCase, webDriverAnnotation);
-            webDriver = AnnotationHelper.getWebDriver(testCase, webDriverField);
-            AnnotationHelper.setWebDriverToField(testCase, webDriverField, webDriver);
+            try {
+                webDriverAnnotation = AnnotationHelper.getWebDriverAnnotation(testCase);
+                Field webDriverField = AnnotationHelper.getFieldWithAnnotation(testCase, webDriverAnnotation);
+                webDriver = AnnotationHelper.getWebDriver(testCase, webDriverField);
+                AnnotationHelper.setWebDriverToField(testCase, webDriverField, webDriver);
+            } catch (Exception e) {
+                if (webDriver != null) {
+                    webDriver.quit();
+                }
+                throw e;
+            }
         }
         return this.webDriver;
     }

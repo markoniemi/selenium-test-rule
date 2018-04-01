@@ -1,6 +1,5 @@
 package org.selenium.examples;
 
-import lombok.Data;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.selenium.WebDriverAnnotations;
 import org.selenium.annotation.ChromeDriver;
+
+import lombok.Data;
 
 @Data
 public class ChromeDriverIT {
@@ -23,6 +24,7 @@ public class ChromeDriverIT {
     @After
     public void tearDown() {
         webDriver.close();
+        webDriver.quit();
     }
 
     @Test

@@ -1,7 +1,5 @@
 package org.selenium.examples;
 
-import lombok.Data;
-import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +9,10 @@ import org.openqa.selenium.WebElement;
 import org.selenium.WebDriverAnnotations;
 import org.selenium.annotation.JBrowserDriver;
 
-@Log4j2
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Data
 public class JBrowserIT {
     @JBrowserDriver

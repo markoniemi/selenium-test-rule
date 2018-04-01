@@ -13,6 +13,7 @@ public class ErrorWriter {
     private String screenshotDirectory;
     private boolean createSubdirectoryForTestCase;
     private WebDriver webDriver;
+
     public ErrorWriter(WebDriver webDriver, String screenshotDirectory, boolean createSubdirectoryForTestCase) {
         this.webDriver = webDriver;
         this.screenshotDirectory = screenshotDirectory;
@@ -36,6 +37,5 @@ public class ErrorWriter {
         outputDir.mkdirs();
         return new File(outputDir, className + "-" + methodName + fileExtension);
     }
-
 
 }

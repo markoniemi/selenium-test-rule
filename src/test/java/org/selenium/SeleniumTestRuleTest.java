@@ -1,6 +1,5 @@
 package org.selenium;
 
-import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -11,7 +10,9 @@ import org.openqa.selenium.WebDriver;
 import org.selenium.test.WebDriverMockFailedTest;
 import org.selenium.test.WebDriverMockSuccessfulTest;
 
-@Log4j2
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class SeleniumTestRuleTest {
     @Ignore
     @Test

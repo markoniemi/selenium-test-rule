@@ -1,6 +1,5 @@
 package org.selenium.test;
 
-import lombok.Data;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -9,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.selenium.SeleniumTestRule;
 import org.selenium.annotation.SeleniumWebDriver;
+
+import lombok.Data;
 
 @Data
 public class SeleniumTestRuleWebDriverClosedErrorIT {

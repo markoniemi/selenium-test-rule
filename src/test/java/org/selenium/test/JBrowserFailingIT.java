@@ -1,7 +1,5 @@
 package org.selenium.test;
 
-import lombok.Data;
-import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -10,7 +8,10 @@ import org.openqa.selenium.WebDriver;
 import org.selenium.SeleniumTestRule;
 import org.selenium.annotation.JBrowserDriver;
 
-@Log4j2
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Data
 public class JBrowserFailingIT {
     @JBrowserDriver

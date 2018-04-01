@@ -1,20 +1,20 @@
 package org.selenium.examples;
 
-import lombok.Data;
-import lombok.extern.log4j.Log4j2;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.selenium.WebDriverAnnotations;
 import org.selenium.annotation.PhantomJsDriver;
 
-@Log4j2
+import lombok.Data;
+
 @Data
 public class PhantomJsIT {
     @PhantomJsDriver(version = "2.1.1")
-    public org.openqa.selenium.WebDriver webDriver;
+    public WebDriver webDriver;
 
     @Before
     public void setUp() {
@@ -24,6 +24,7 @@ public class PhantomJsIT {
     @After
     public void tearDown() {
         webDriver.close();
+        webDriver.quit();
     }
 
     @Test

@@ -1,17 +1,21 @@
 package org.selenium;
 
-import lombok.extern.log4j.Log4j2;
+import static org.selenium.SeleniumTestRuleTest.runTest;
+
 import org.junit.Test;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.NoSuchWindowException;
 import org.selenium.examples.ChromeDriverIT;
 import org.selenium.examples.JBrowserIT;
 import org.selenium.examples.PhantomJsIT;
-import org.selenium.test.*;
+import org.selenium.test.ChromeDriverFailingIT;
+import org.selenium.test.JBrowserFailingIT;
+import org.selenium.test.PhantomJsFailingIT;
+import org.selenium.test.PhantomJsFinalFieldIT;
+import org.selenium.test.PhantomJsNoAnnotationsIT;
+import org.selenium.test.PhantomJsNoWebDriverFieldIT;
+import org.selenium.test.SeleniumTestRuleCustomDirectoryIT;
+import org.selenium.test.SeleniumTestRuleWebDriverClosedErrorIT;
 
-import static org.selenium.SeleniumTestRuleTest.runTest;
-
-@Log4j2
 public class SeleniumTestRuleIT {
     @Test
     public void phantomJsIT() throws Throwable {

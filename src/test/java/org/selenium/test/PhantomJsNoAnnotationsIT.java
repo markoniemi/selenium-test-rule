@@ -1,10 +1,11 @@
 package org.selenium.test;
 
-import junit.framework.TestCase;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.selenium.WebDriverAnnotations;
+
+import junit.framework.TestCase;
 
 public class PhantomJsNoAnnotationsIT extends TestCase {
     public WebDriver webDriver;

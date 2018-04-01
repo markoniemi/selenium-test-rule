@@ -1,7 +1,5 @@
 package org.selenium.test;
 
-import lombok.Data;
-import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -9,7 +7,8 @@ import org.openqa.selenium.By;
 import org.selenium.SeleniumTestRule;
 import org.selenium.annotation.PhantomJsDriver;
 
-@Log4j2
+import lombok.Data;
+
 @Data
 public class PhantomJsFailingIT {
     @PhantomJsDriver(version = "2.1.1")
