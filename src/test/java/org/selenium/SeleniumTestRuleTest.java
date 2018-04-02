@@ -14,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class SeleniumTestRuleTest {
-    @Ignore
     @Test
     public void getWebDriver() {
         WebDriverTest webDriverTest = new WebDriverTest();
@@ -23,9 +22,8 @@ public class SeleniumTestRuleTest {
         WebDriver webDriver = seleniumTestRule.setWebDriverToTest(webDriverTest);
         Assert.assertNotNull(webDriver);
     }
-
-    @Test
     @Ignore
+    @Test
     public void getWebDriverFromAnnotation() {
         try {
             WebDriverTest webDriverTest = new WebDriverTest();
