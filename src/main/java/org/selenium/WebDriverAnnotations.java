@@ -4,6 +4,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
 import org.openqa.selenium.WebDriver;
+import org.selenium.annotation.SeleniumWebDriver;
 import org.selenium.executable.WebDriverFactory;
 
 public class WebDriverAnnotations {
@@ -12,8 +13,8 @@ public class WebDriverAnnotations {
     }
 
     /**
-     * Initialize webDriver to test case. When using initializeWebDriver method, you
-     * must call webDriver.quit() in @After or @AfterClass method.
+     * Initialize webDriver to test case. When using initializeWebDriver method,
+     * you must call webDriver.quit() in @After or @AfterClass method.
      * 
      * @param testCase
      *            pass 'this' from test case
@@ -34,8 +35,13 @@ public class WebDriverAnnotations {
             if (webDriver != null) {
                 webDriver.quit();
             }
-            throw e;
+            throw new IllegalArgumentException(createErrorText(), e);
         }
         return webDriver;
+    }
+
+    public static String createErrorText() {
+        String annotationName = SeleniumWebDriver.class.getSimpleName();
+        return String.format("Annotate public attribute of type WebDriver with @%s annotation.", annotationName);
     }
 }

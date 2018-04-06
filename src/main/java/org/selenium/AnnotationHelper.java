@@ -25,13 +25,9 @@ public class AnnotationHelper {
             }
         }
         // No annotation was found, throw an exception
-        throw new IllegalArgumentException(createErrorText());
+        throw new IllegalArgumentException();
     }
 
-    static String createErrorText() {
-        String annotationName = SeleniumWebDriver.class.getSimpleName();
-        return String.format("Annotate public attribute of type WebDriver with @%s annotation.", annotationName);
-    }
 
     @SuppressWarnings("squid:S1751")
     public static Field getFieldWithAnnotation(Object testCase, Annotation annotation) {
@@ -41,33 +37,17 @@ public class AnnotationHelper {
         return null;
     }
 
-    public static WebDriver getWebDriver(Object testCase) {
+    public static WebDriver getWebDriver(Object testCase) throws IllegalAccessException {
         Annotation webDriverAnnotation = AnnotationHelper.getWebDriverAnnotation(testCase);
         Field webDriverField = AnnotationHelper.getFieldWithAnnotation(testCase, webDriverAnnotation);
         return AnnotationHelper.getWebDriver(testCase, webDriverField);
     }
 
-    public static WebDriver getWebDriver(Object testCase, Field field) {
-        try {
-            Object object = FieldUtils.readField(field, testCase);
-            if (object != null) {
-                if (object instanceof WebDriver) {
-                    return (WebDriver) object;
-                } else {
-                    throw new IllegalArgumentException(createErrorText());
-                }
-            }
-        } catch (IllegalArgumentException | IllegalAccessException e) {
-            throw new IllegalArgumentException(createErrorText(), e);
-        }
-        return null;
+    public static WebDriver getWebDriver(Object testCase, Field field) throws IllegalAccessException {
+        return (WebDriver) FieldUtils.readField(field, testCase);
     }
 
-    public static void setWebDriverToField(Object testCase, Field field, WebDriver webDriver) {
-        try {
+    public static void setWebDriverToField(Object testCase, Field field, WebDriver webDriver) throws IllegalAccessException {
             FieldUtils.writeField(field, testCase, webDriver);
-        } catch (IllegalAccessException e) {
-            throw new IllegalArgumentException(createErrorText(), e);
-        }
     }
 }

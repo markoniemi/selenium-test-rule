@@ -2,7 +2,6 @@ package org.selenium;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
 
 import org.junit.internal.AssumptionViolatedException;
 import org.junit.rules.MethodRule;
@@ -84,10 +83,11 @@ public class SeleniumTestRule implements MethodRule {
 
     /**
      * Invoked when a test method fails
+     * @throws IllegalAccessException 
      *
      * @throws IOException
      */
-    public void failed(Throwable throwable, Description description) {
+    public void failed(Throwable throwable, Description description) throws IllegalAccessException {
         log.debug("{} failed with error {}", description.getDisplayName(), throwable.getMessage());
         // if webDriver was created by the test case, the test rule does not have a
         // handle to it
@@ -95,7 +95,7 @@ public class SeleniumTestRule implements MethodRule {
             this.webDriver = AnnotationHelper.getWebDriver(testCase);
         }
         if (this.webDriver == null) {
-            throw new IllegalArgumentException(AnnotationHelper.createErrorText());
+            throw new IllegalArgumentException(WebDriverAnnotations.createErrorText());
         }
         try {
             ErrorWriter errorWriter = new ErrorWriter(webDriver, screenshotDirectory, createSubdirectoryForTestCase);
@@ -120,19 +120,6 @@ public class SeleniumTestRule implements MethodRule {
     }
 
     protected WebDriver setWebDriverToTest(Object testCase) {
-        if (this.webDriver == null) {
-            try {
-                webDriverAnnotation = AnnotationHelper.getWebDriverAnnotation(testCase);
-                Field webDriverField = AnnotationHelper.getFieldWithAnnotation(testCase, webDriverAnnotation);
-                webDriver = AnnotationHelper.getWebDriver(testCase, webDriverField);
-                AnnotationHelper.setWebDriverToField(testCase, webDriverField, webDriver);
-            } catch (Exception e) {
-                if (webDriver != null) {
-                    webDriver.quit();
-                }
-                throw e;
-            }
-        }
-        return this.webDriver;
+        return WebDriverAnnotations.initializeWebDriver(testCase);
     }
 }

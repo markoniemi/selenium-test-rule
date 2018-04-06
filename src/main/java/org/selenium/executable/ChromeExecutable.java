@@ -17,8 +17,10 @@ public class ChromeExecutable {
         ChromeOptions options = new ChromeOptions();
         if (annotation.headless()) {
             options.addArguments("headless");
-            options.addArguments("window-size=1200x600");
+            options.addArguments("window-size=1200x800");
             options.addArguments("no-sandbox");
+            options.addArguments("proxy-server='direct://'");
+            options.addArguments("proxy-bypass-list=*");
         }
         options.addArguments(annotation.arguments());
         return new org.openqa.selenium.chrome.ChromeDriver(options);
