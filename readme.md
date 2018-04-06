@@ -6,6 +6,12 @@
 When using SeleniumTestRule, do not close or quit webDriver in order to get screenshots of failed cases. 
 When using WebDriverAnnotations.initializeWebDriver, you must quit webDriver to prevent hanging browser processes.
 
-Upload file to bintray
+Version update
+-
+mvn release:prepare release:perform
+All Travis builds will deploy to PackageCloud.
+
+
+Deploy to bintray
 -
 mvn deploy -DskipTests=true -DBINTRAY_API_KEY=api_key --settings settings.xml
