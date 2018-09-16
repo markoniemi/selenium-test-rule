@@ -8,7 +8,7 @@ When using WebDriverAnnotations.initializeWebDriver, you must quit webDriver to 
 
 Version update
 -
-mvn release:prepare release:perform
+mvn --batch-mode release:prepare release:perform
 All Travis builds will deploy to PackageCloud.
 
 

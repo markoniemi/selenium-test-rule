@@ -2,13 +2,12 @@ package org.selenium;
 
 import static org.selenium.SeleniumTestRuleTest.runTest;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.NoSuchElementException;
 import org.selenium.examples.ChromeDriverIT;
-import org.selenium.examples.JBrowserIT;
 import org.selenium.examples.PhantomJsIT;
 import org.selenium.test.ChromeDriverFailingIT;
-import org.selenium.test.JBrowserFailingIT;
 import org.selenium.test.PhantomJsFailingIT;
 import org.selenium.test.PhantomJsFinalFieldIT;
 import org.selenium.test.PhantomJsNoAnnotationsIT;
@@ -50,16 +49,6 @@ public class SeleniumTestRuleIT {
     @Test(expected = IllegalArgumentException.class)
     public void phantomJsNoAnnotationsIT() throws Throwable {
         runTest(PhantomJsNoAnnotationsIT.class);
-    }
-
-    @Test
-    public void jBrowserIT() throws Throwable {
-        runTest(JBrowserIT.class);
-    }
-
-    @Test(expected = NoSuchElementException.class)
-    public void jBrowserFailingIT() throws Throwable {
-        runTest(JBrowserFailingIT.class);
     }
 
     @Test

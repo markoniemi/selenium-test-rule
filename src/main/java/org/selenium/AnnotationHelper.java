@@ -6,7 +6,6 @@ import java.lang.reflect.Field;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.openqa.selenium.WebDriver;
 import org.selenium.annotation.ChromeDriver;
-import org.selenium.annotation.JBrowserDriver;
 import org.selenium.annotation.PhantomJsDriver;
 import org.selenium.annotation.SeleniumWebDriver;
 
@@ -17,8 +16,7 @@ public class AnnotationHelper {
 
     @SuppressWarnings({ "rawtypes", "unchecked", "squid:S1751" })
     public static Annotation getWebDriverAnnotation(Object testCase) {
-        Class[] annotations = { SeleniumWebDriver.class, PhantomJsDriver.class, JBrowserDriver.class,
-                ChromeDriver.class };
+        Class[] annotations = { SeleniumWebDriver.class, PhantomJsDriver.class, ChromeDriver.class };
         for (Class<? extends Annotation> annotation : annotations) {
             for (Field field : FieldUtils.getFieldsWithAnnotation(testCase.getClass(), annotation)) {
                 return field.getAnnotation(annotation);
@@ -27,7 +25,6 @@ public class AnnotationHelper {
         // No annotation was found, throw an exception
         throw new IllegalArgumentException();
     }
-
 
     @SuppressWarnings("squid:S1751")
     public static Field getFieldWithAnnotation(Object testCase, Annotation annotation) {
@@ -47,7 +44,8 @@ public class AnnotationHelper {
         return (WebDriver) FieldUtils.readField(field, testCase);
     }
 
-    public static void setWebDriverToField(Object testCase, Field field, WebDriver webDriver) throws IllegalAccessException {
-            FieldUtils.writeField(field, testCase, webDriver);
+    public static void setWebDriverToField(Object testCase, Field field, WebDriver webDriver)
+            throws IllegalAccessException {
+        FieldUtils.writeField(field, testCase, webDriver);
     }
 }
