@@ -110,7 +110,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M3</version>
                 <configuration>
-                    <useSystemClassLoader>false</useSystemClassLoader>
+                    <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
                     <includes>
                         <include>**/SeleniumTestRuleTest.java</include>
                     </includes>
