@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.markoniemi</groupId>
     <artifactId>selenium-test-rule</artifactId>
@@ -6,8 +8,8 @@
     <scm>
         <url>https://github.com/markoniemi/selenium-test-rule</url>
         <connection>scm:git:https://github.com/markoniemi/selenium-test-rule.git</connection>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
     <properties>
         <junit.version>4.12</junit.version>
     </properties>
@@ -108,6 +110,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M3</version>
                 <configuration>
+                    <useSystemClassLoader>false</useSystemClassLoader>
                     <includes>
                         <include>**/SeleniumTestRuleTest.java</include>
                     </includes>
