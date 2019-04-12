@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: markhobson/maven-chrome
     steps:
-      - run: sudo apt-get update; sudo apt-get install openjfx
+#      - run: sudo apt-get update; sudo apt-get install openjfx
       - checkout
       - restore_cache:
           key: selenium-test-rule-{{ checksum "pom.xml" }}
