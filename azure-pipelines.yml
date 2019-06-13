@@ -14,4 +14,5 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: '-B clean install'
+    goals: '-B clean org.jacoco:jacoco-maven-plugin:prepare-agent package verify sonar:sonar -Dsonar.login=$(SONAR_CLOUD_TOKEN) -Dsonar.organization=markoniemi-github -Dsonar.host.url=https://sonarcloud.io'
+    
